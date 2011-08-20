@@ -1,11 +1,10 @@
 package org.abqjug.reflectiontalk;
 
-import org.abqjug.reflectiontalk.domain.Talker;
+import org.abqjug.reflectiontalk.domain.Joker;
 
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
-import java.lang.reflect.Field;
 import java.lang.reflect.Method;
 
 /**
@@ -15,32 +14,29 @@ public class CommandLineInput {
 
     public static void main(String[] args) {
 
-        Talker talkerInstance = new Talker();
+        Joker joker = new Joker();
 
         //examine attributes
-        Method[] methods = Talker.class.getMethods();
+        Method[] methods = Joker.class.getMethods();
 
-        System.out.println("The Methods defined in Talker:");
+        System.out.println("The Methods defined in Joker:");
 
         for (Method method : methods) {
             System.out.println("\t" + method.getName());
         }
 
-        System.out.println("The Fields defined in Talker:");
-
-        System.out.println("What Talker method would you like to execute: ");
-
         String input = null;
 
-        while(!"exit".equals(input)){
-            try{
-            input = readInput();
+        while (!"exit".equals(input)) {
+            try {
+                System.out.println("What Talker method would you like to execute?: ");
+                input = readInput();
 
-            Method method = Talker.class.getMethod(input);
+                Method method = Joker.class.getMethod(input);
 
-            method.invoke(talkerInstance);
+                method.invoke(joker);
             } catch (Exception e) {
-               System.out.println("Exception was thrown during getMethod or method invoke: " + e.toString());
+                System.out.println("Exception was thrown during getMethod or method invoke: " + e.toString());
             }
         }
 

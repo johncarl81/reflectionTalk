@@ -1,23 +1,24 @@
 package org.abqjug.reflectiontalk;
 
-import org.abqjug.reflectiontalk.domain.Talker;
+import org.abqjug.reflectiontalk.domain.Hidden;
 
 import java.lang.reflect.Field;
+import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
 
 /**
  * @author John Ericksen
  */
-public class Introspection {
+public class PrivateCall {
 
     public static void main(String[] args) {
         try {
 
-            Talker talkerInstance = new Talker();
+            Hidden talkerInstance = new Hidden("PRIVATE", "PROTECTED", "PACKAGEPRIVATE", "PUBLIC");
 
             //examine attributes
-            Method[] methods = Talker.class.getDeclaredMethods();
-            Field[] fields = Talker.class.getFields();
+            Method[] methods = Hidden.class.getDeclaredMethods();
+            Field[] fields = Hidden.class.getDeclaredFields();
 
             System.out.println("The Methods defined in Talker:");
 
@@ -31,12 +32,23 @@ public class Introspection {
             //print fields
             for (Field field : fields) {
 
+                //private accessable
+                field.setAccessible(true);
+
                 System.out.println("\t" + field.getName() +
                         ", Type: " + field.getType().getName() +
                         ", Value: " + field.get(talkerInstance));
             }
 
+            for (Method method : methods) {
+                method.setAccessible(true);
+
+                method.invoke(talkerInstance);
+            }
+
         } catch (IllegalAccessException e) {
+            e.printStackTrace();
+        } catch (InvocationTargetException e) {
             e.printStackTrace();
         }
 
