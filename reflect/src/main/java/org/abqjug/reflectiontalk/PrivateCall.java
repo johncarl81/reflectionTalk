@@ -43,6 +43,8 @@ public class PrivateCall {
             for (Method method : methods) {
                 method.setAccessible(true);
 
+                System.out.println("Calling: " + method.getName());
+                System.out.print("\t");
                 method.invoke(talkerInstance);
             }
 

@@ -32,7 +32,7 @@ public class CommandLineInput {
                 System.out.println("What Talker method would you like to execute?: ");
                 input = readInput();
 
-                Method method = Joker.class.getMethod(input);
+                Method method = Joker.class.getDeclaredMethod(input);
 
                 method.invoke(joker);
             } catch (Exception e) {

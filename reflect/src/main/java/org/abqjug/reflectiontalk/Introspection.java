@@ -13,7 +13,7 @@ public class Introspection {
     public static void main(String[] args) {
         try {
 
-            Talker talkerInstance = new Talker();
+            Talker talkerInstance = new Talker("ONE", "TWO");
 
             //examine attributes
             Method[] methods = Talker.class.getDeclaredMethods();

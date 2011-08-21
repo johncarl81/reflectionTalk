@@ -5,8 +5,13 @@ package org.abqjug.reflectiontalk.domain;
  */
 public class Talker {
 
-    public String field1 = "Field 1";
-    public String field2 = "Field 2";
+    public String field1;
+    public String field2;
+
+    public Talker(String field1, String field2) {
+        this.field1 = field1;
+        this.field2 = field2;
+    }
 
     public void one() {
         System.out.println("One was called");
