@@ -14,5 +14,6 @@
         <module>reflect</module>
         <module>aspectj</module>
         <module>javassist</module>
+        <module>asm</module>
     </modules>
 </project>
