@@ -4,9 +4,9 @@ import org.objectweb.asm.*;
 
 public class GhostImplDump implements Opcodes {
 
-    public static byte[] dump(String ghostImplName) throws Exception {
+    public static byte[] dump(String implName) throws Exception {
 
-        String className = ghostImplName.replace('.', '/');
+        String className = implName.replace('.', '/');
 
         ClassWriter cw = new ClassWriter(0);
         FieldVisitor fv;
@@ -15,7 +15,7 @@ public class GhostImplDump implements Opcodes {
 
         cw.visit(V1_6, ACC_PUBLIC + ACC_SUPER, className, null, "java/lang/Object", new String[]{"org/abqjug/reflectiontalk/Ghost"});
 
-        cw.visitSource("GhostImpl.java", null);
+//        cw.visitSource("GhostImpl.java", null);
 
         {
             mv = cw.visitMethod(ACC_PUBLIC, "<init>", "()V", null, null);

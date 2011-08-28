@@ -21,7 +21,7 @@ public class Implementer {
 
             ClassWriter writer = new ClassWriter(0);
 
-            ClassImplementerAdaptor adapter = new ClassImplementerAdaptor(writer, GHOST_IMPL_NAME);
+            InterfaceImplementerAdaptor adapter = new InterfaceImplementerAdaptor(writer, GHOST_IMPL_NAME);
 
             reader.accept(adapter, 0);
 
