@@ -1,9 +1,8 @@
 package org.abqjug.reflectiontalk;
 
-import java.lang.reflect.Field;
-import java.lang.reflect.Method;
-import java.util.HashMap;
-import java.util.Map;
+import org.objectweb.asm.ClassReader;
+
+import java.io.IOException;
 
 /**
  * @author John Ericksen
@@ -14,38 +13,12 @@ public class Viewer {
 
         try {
 
-            Map<String, byte[]> classes = new HashMap<String, byte[]>();
-            //classes.put("Hello", HelloDump.dump());
+            ClassPrinter classVisitor = new ClassPrinter();
 
-            ByteArrayClassLoader classLoader = new ByteArrayClassLoader(classes);
+            ClassReader cr = new ClassReader(Ghost.class.getCanonicalName());
+            cr.accept(classVisitor, 0);
 
-            Class genereatedClass = classLoader.loadClass("Hello");
-
-            Object instance = genereatedClass.newInstance();
-
-            instance.getClass().getMethod("main", String.class).invoke(instance, "test");
-
-            //examine attributes
-            Method[] methods = genereatedClass.getDeclaredMethods();
-            Field[] fields = genereatedClass.getFields();
-
-            System.out.println("The Methods defined in Talker:");
-
-            //print methods
-            for (Method method : methods) {
-                System.out.println("\t" + method.getName());
-            }
-
-            System.out.println("The Fields defined in Talker:");
-
-            //print fields
-            for (Field field : fields) {
-
-                System.out.println("\t" + field.getName() +
-                        ", Type: " + field.getType().getName() +
-                        ", Value: " + field.get(instance));
-            }
-        } catch (Exception e) {
+        } catch (IOException e) {
             e.printStackTrace();
         }
     }

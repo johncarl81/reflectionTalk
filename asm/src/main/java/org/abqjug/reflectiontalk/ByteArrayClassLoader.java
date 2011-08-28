@@ -12,7 +12,8 @@ public class ByteArrayClassLoader extends ClassLoader {
 
     public Class findClass(String name) throws ClassNotFoundException {
         if (classes.containsKey(name)) {
-            return defineClass(name, classes.get(name), 0, classes.get(name).length);
+            byte[] classBytes = classes.get(name);
+            return defineClass(name, classBytes, 0, classBytes.length);
         }
 
         return super.findClass(name);
