@@ -14,7 +14,14 @@ public class CommandLineInput {
 
     public static void main(String[] args) {
 
-        Joker joker = new Joker();
+        Joker joker = null;
+        try {
+            joker = Joker.class.newInstance();
+        } catch (InstantiationException e) {
+            e.printStackTrace();
+        } catch (IllegalAccessException e) {
+            e.printStackTrace();
+        }
 
         //examine attributes
         Method[] methods = Joker.class.getMethods();

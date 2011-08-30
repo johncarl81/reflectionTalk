@@ -15,5 +15,7 @@
         <module>aspectj</module>
         <module>javassist</module>
         <module>asm</module>
+        <module>objenesis</module>
+        <module>proxy</module>
     </modules>
 </project>
