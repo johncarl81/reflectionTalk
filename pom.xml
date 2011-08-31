@@ -10,12 +10,12 @@
     <packaging>pom</packaging>
 
     <modules>
-        <module>basic</module>
         <module>reflect</module>
         <module>aspectj</module>
         <module>javassist</module>
         <module>asm</module>
         <module>objenesis</module>
         <module>proxy</module>
+        <module>java6</module>
     </modules>
 </project>
